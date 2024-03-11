@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  jupyterhub:
+    image: jupyterhub/jupyterhub
+    container_name: jupyterhub
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./jupyterhub-data:/srv/jupyterhub
+      - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    command:
+      - jupyterhub
+      - --config=/srv/jupyterhub/jupyterhub_config.py
